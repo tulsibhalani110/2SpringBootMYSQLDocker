@@ -12,7 +12,7 @@ pipeline {
                     dockerfileContent = '''
                         FROM amazoncorretto:17
                         WORKDIR /app
-                        COPY target/discountcode-0.0.1-SNAPSHOT.jar discountcode.jar
+                        COPY target/discountcode-0.0.1-SNAPSHOT.jar .
                         CMD ["java", "-jar", "discountcode-0.0.1-SNAPSHOT.jar"]
                     '''
                     writeFile file: 'Dockerfile', text: dockerfileContent
