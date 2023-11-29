@@ -10,14 +10,14 @@ pipeline {
             steps {
                 script {
                     dockerfileContent = '''
-                        FROM amazoncorretto:11
+                        FROM amazoncorretto:17
                         WORKDIR /app
-                        COPY target/your-application.jar .
-                        CMD ["java", "-jar", "your-application.jar"]
+                        COPY target/discountcode-0.0.1-SNAPSHOT.jar discountcode.jar
+                        CMD ["java", "-jar", "discountcode-0.0.1-SNAPSHOT.jar"]
                     '''
                     writeFile file: 'Dockerfile', text: dockerfileContent
 
-                    def dockerImage = docker.build(env.DOCKER_IMAGE, '-f Dockerfile .')
+                    def dockerImage = docker.build(env.amazoncorretto, '-f Dockerfile .')
                 }
             }
         }
